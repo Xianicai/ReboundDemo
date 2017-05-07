@@ -1,8 +1,10 @@
 package com.example.xianicai.rebounddemo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.facebook.rebound.SimpleSpringListener;
@@ -12,12 +14,21 @@ import com.facebook.rebound.SpringSystem;
 
 public class MainActivity extends AppCompatActivity {
     private SpringSystem springSystem;
+    private Button mButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         springSystem = SpringSystem.create();
         final ImageView imageView = (ImageView) findViewById(R.id.image);
+        mButton = (Button) findViewById(R.id.btn_next);
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,SpringAnimationActivity.class));
+            }
+        });
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
